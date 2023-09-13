@@ -1,0 +1,5 @@
+User-agent: *
+Allow: *
+Disallow: *?page=
+Host: https://diet-blog-ru.github.io
+Sitemap: https://diet-blog-ru.github.io/sitemap.xml
