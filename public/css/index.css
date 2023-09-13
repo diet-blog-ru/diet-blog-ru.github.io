@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+:root {
+
+}
+
+/* Fonts */
+	/* Open Sans */
+@font-face {
+	font-family: 'Open-Sans-Regular';
+	src: local('Open-Sans-Regular'), url('resources/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+}
+	/* */
+
+	/* PT Sans */
+@font-face {
+	font-family: 'PT-Sans-Regular';
+	src: local('PT-Sans-Regular'), url('resources/fonts/PT_Sans/PTSans-Regular.ttf') format('truetype');
+}
+	/* */
+
+	/* Roboto */
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: local('Roboto-Regular'), url('resources/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+	/* */
+/* */
+
+body * {font-family: 'PT-Sans-Regular';}
+
+.container {}
+.hidden {display: none;}
+
+/* Begin: Breadcrumbs */
+.breadcrumb {display: flex; flex-wrap: nowrap; padding: .5em 0; width: 100%; overflow-x: auto;}
+.breadcrumb > * {font-size: 1.25em; margin-right: .5em; white-space: nowrap;}
+/* End: Breadcrumbs */
+
+
+/* Begin: Prime */
+.header.root {display: flex;}
+.header.root > input {width: 300px; margin: 0 auto; padding: .5em; margin-top: .5em; border-radius: .25em;}
+
+main.root {padding: 0 .25em;}
+main.root  > h1 {font-size: 1.75em; margin: .25em 0;}
+main.root  > h1 + div {display: flex; font-size: 1.5em; margin: .5em 0 0;}
+main.root  > h1 + div > a {padding: .5em; margin-right: .5em; border-radius: .25em;}
+main.root  > h1 + div > a:last-child {margin-right: 0;}
+
+.articles {}
+.articles > h2 {}
+.articles > .main {border: 1px solid transparent;}
+.articles > .main > article {margin-bottom: 2em; border-radius: .25em;}
+.articles > .main > article:first-child {margin-top: 1em;}
+.articles > .main > article:last-child {margin-bottom: 1em;}
+.articles > .main > article > h3 {font-size: 1.5em; font-weight: bold;}
+.articles > .main > article > h3 > a {display: block;}
+.articles > .main > article > .main > p {font-size: 1.25em;}
+.articles > .main > article > .main > p > a {text-decoration: underline;}
+
+main.root > .pagination {display: flex; flex-flow: row wrap; padding: .25em; padding-right: 0; padding-bottom: 0;}
+main.root > .pagination > a {background-color: #f2f2f2; padding: .65em; border-radius: .25em; margin-right: .25em; margin-bottom: .25em;}
+main.root > .pagination > a.active {color: #fff; background-color: blue;}
+
+	/* Begin: Light theme */
+	[data-theme="light"] .header.root > input {border: 1px solid #ccc;}
+
+	[data-theme="light"] main > h1 + div > a {background-color: #f2f2f2;}
+	[data-theme="light"] .articles > .main > article {}
+	[data-theme="light"] .articles > .main > article > h3 > a {color: blue;}
+	[data-theme="light"] .articles > .main > article > .main > p > a {}
+	/* End: Light theme */
+	
+	/* Begin: Dark theme */
+	[data-theme="dark"] .header.root > input::placeholder {color: #ccc;}
+	[data-theme="dark"] .header.root > input {border: 1px solid #ccc;}
+	[data-theme="dark"] main > h1 + div > a {background-color: #222;}
+	[data-theme="dark"] .articles > .main > article,
+	[data-theme="dark"] .articles > .main > article * {background-color: #222;}
+	/* End: Dark theme */
+/* End: Prime */
+
+
+/* Begin: Article */
+article.root {padding: 0 .25em; border: 1px solid transparent;}
+article.root > h1 {font-size: 1.75em; font-weight: bold; margin: .25em 0 .5em;}
+article.root > time {display: block; text-align: center; margin-bottom: 1em;}
+article.root > p {font-size: 1.25em; margin-bottom: 1em; text-align: justify-all;}
+article.root > strong {font-size: 1.5em; font-weight: bold; display: block; margin-bottom: 1em; text-align: justify-all;}
+article.root > div > p {margin-bottom: 1em; font-size: 1.25em; text-align: justify-all;}
+	
+	/* Begin: Dark theme */
+	[data-theme="dark"] * {color: #ccc; background-color: #333;}
+	/* End: Dark theme */
+/* End: Article */
+
+
+@media (min-width: 900px) {
+	.container {width: 900px; margin: 0 auto;}
+}
