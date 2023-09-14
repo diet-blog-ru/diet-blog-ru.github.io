@@ -17,6 +17,11 @@
 	font-family: 'PT-Sans-Regular';
 	src: local('PT-Sans-Regular'), url('resources/fonts/PT_Sans/PTSans-Regular.ttf') format('truetype');
 }
+
+@font-face {
+	font-family: 'PT-Sans-Bold';
+	src: local('PT-Sans-Bold'), url('resources/fonts/PT_Sans/PTSans-Bold.ttf') format('truetype');
+}
 	/* */
 
 	/* Roboto */
@@ -27,7 +32,7 @@
 	/* */
 /* */
 
-body * {font-family: 'PT-Sans-Regular';}
+body * {font-family: "PT-Sans-Regular";}
 
 .container {}
 .hidden {display: none;}
@@ -40,7 +45,18 @@ body * {font-family: 'PT-Sans-Regular';}
 
 /* Begin: Prime */
 .header.root {display: flex;}
-.header.root > input {width: 300px; margin: 0 auto; padding: .5em; margin-top: .5em; border-radius: .25em;}
+.header.root > div {display: flex; width: 300px; height: 40px; margin: 0 auto; margin-top: .5em; border-radius: .3em;}
+.header.root > div > input {font-size: 1.25em; width: 260px; padding: .25em .5em;}
+.header.root > div > input::placeholder {padding-left: 2em; background: no-repeat .25em; background-size: 1em; background-image: url('resources/icons/search.svg');}
+.header.root > div.active {border-bottom-left-radius: 0; border-bottom-right-radius: 0;}
+.header.root > div > button {width: 40px; background: no-repeat center; background-size: 1.75em;}
+.header.root > div > button.light {background-image: url('resources/icons/sun.svg');}
+.header.root > div > button.dark {background-image: url('resources/icons/moon.svg');}
+.header.root > .results {border-radius: 0; display: none; width: 300px; height: auto; max-height: 300px; overflow: auto; position: absolute; left: calc(50% - 150px); top: 39px;}
+.header.root > .results.active {display: block;}
+.header.root > .results > a {display: block; font-size: 1.25em; padding: .5em .25em;}
+.header.root > .results > hr {border-top: 1px solid #ccc;}
+.header.root > .results > hr:last-child {display: none;}
 
 main.root {padding: 0 .25em;}
 main.root  > h1 {font-size: 1.75em; margin: .25em 0;}
@@ -54,7 +70,7 @@ main.root  > h1 + div > a:last-child {margin-right: 0;}
 .articles > .main > article {margin-bottom: 2em; border-radius: .25em;}
 .articles > .main > article:first-child {margin-top: 1em;}
 .articles > .main > article:last-child {margin-bottom: 1em;}
-.articles > .main > article > h3 {font-size: 1.5em; font-weight: bold;}
+.articles > .main > article > h3 {font-size: 1.5em; font-family: "PT-Sans-Bold";}
 .articles > .main > article > h3 > a {display: block;}
 .articles > .main > article > .main > p {font-size: 1.25em;}
 .articles > .main > article > .main > p > a {text-decoration: underline;}
@@ -64,30 +80,44 @@ main.root > .pagination > a {background-color: #f2f2f2; padding: .65em; border-r
 main.root > .pagination > a.active {color: #fff; background-color: blue;}
 
 	/* Begin: Light theme */
-	[data-theme="light"] .header.root > input {border: 1px solid #ccc;}
+	[data-theme="light"] .header.root > div {border: 1px solid #ccc;}
+	[data-theme="light"] .header.root > div > input {}
+	[data-theme="light"] .header.root > .results {border: 1px solid #ccc; background-color: #fff;}
+	[data-theme="light"] main.root > h1 + div > a {background-color: #f2f2f2;}
+	[data-theme="light"] main.root > .pagination > a {background-color: #f2f2f2;}
+	[data-theme="light"] main.root > .pagination > a.active {color: #fff; background-color: blue;}
 
-	[data-theme="light"] main > h1 + div > a {background-color: #f2f2f2;}
 	[data-theme="light"] .articles > .main > article {}
 	[data-theme="light"] .articles > .main > article > h3 > a {color: blue;}
 	[data-theme="light"] .articles > .main > article > .main > p > a {}
 	/* End: Light theme */
 	
 	/* Begin: Dark theme */
-	[data-theme="dark"] .header.root > input::placeholder {color: #ccc;}
-	[data-theme="dark"] .header.root > input {border: 1px solid #ccc;}
-	[data-theme="dark"] main > h1 + div > a {background-color: #222;}
+	[data-theme="dark"] {background-color: #333;}
+	[data-theme="dark"] a:hover {color: #ccc;}
+	[data-theme="dark"] .header.root > div {background-color: #222;}
+	[data-theme="dark"] .header.root > div > input {background-color: #222;}
+	[data-theme="dark"] .header.root > div > input::placeholder {color: #ccc;}
+	[data-theme="dark"] .header.root > .results {border: 1px solid #222; border-top: 1px solid #333;}
+	[data-theme="dark"] .header.root > .results > a {background-color: #222;}
+	[data-theme="dark"] .header.root > .results > hr {border-top: 1px solid #333;}
+	[data-theme="dark"] main.root > h1 + div > a {background-color: #222;}
+	[data-theme="dark"] main.root > .pagination > a {background-color: #222;}
+	[data-theme="dark"] main.root > .pagination > a.active {color: #ccc; background-color: #111;}
+
 	[data-theme="dark"] .articles > .main > article,
-	[data-theme="dark"] .articles > .main > article * {background-color: #222;}
+	[data-theme="dark"] .articles > .main > article * {}
 	/* End: Dark theme */
 /* End: Prime */
 
 
 /* Begin: Article */
 article.root {padding: 0 .25em; border: 1px solid transparent;}
-article.root > h1 {font-size: 1.75em; font-weight: bold; margin: .25em 0 .5em;}
-article.root > time {display: block; text-align: center; margin-bottom: 1em;}
+article.root > h1 {font-size: 1.75em; font-family: "PT-Sans-Bold"; margin: .25em 0 .5em;}
+article.root > time {display: block; font-size: .85em; font-family: "PT-Sans-Bold"; letter-spacing: .05em; text-align: center; margin-bottom: 1em;}
 article.root > p {font-size: 1.25em; margin-bottom: 1em; text-align: justify-all;}
-article.root > strong {font-size: 1.5em; font-weight: bold; display: block; margin-bottom: 1em; text-align: justify-all;}
+article.root > strong,
+article.root > div > strong {font-size: 1.25em; font-family: "PT-Sans-Bold"; display: block; margin-bottom: 1em; text-align: justify-all;}
 article.root > div > p {margin-bottom: 1em; font-size: 1.25em; text-align: justify-all;}
 	
 	/* Begin: Dark theme */
@@ -98,4 +128,7 @@ article.root > div > p {margin-bottom: 1em; font-size: 1.25em; text-align: justi
 
 @media (min-width: 900px) {
 	.container {width: 900px; margin: 0 auto;}
+	.header.root > div {width: 500px;}
+	.header.root > div > input {width: 460px;}
+	.header.root > .results {width: 500px; left: calc(50% - 250px);}
 }
