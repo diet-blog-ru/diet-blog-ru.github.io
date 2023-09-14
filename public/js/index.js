@@ -23,23 +23,63 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	// Theme
 	let themeColor = window.localStorage.getItem('themeColor') || 'light';
-	console.log(themeColor);
 	document.body.dataset.theme = themeColor;
-	document.querySelector('button.change_theme').onclick = function(event) {
-		if (document.body.dataset.theme == 'light') {
-			event.target.classList.remove('light');
-			event.target.classList.add('dark');
-			window.localStorage.setItem('themeColor', 'dark');
-			document.body.dataset.theme = 'dark';
-		} else {
-			event.target.classList.remove('dark');
-			event.target.classList.add('light');
-			window.localStorage.setItem('themeColor', 'light');
-			document.body.dataset.theme = 'light';
-		}
-	};
+
+	if (themeColor == 'light') {
+		document.querySelector('[name="theme-color"]').setAttribute('content', '#fff');
+	} else {
+		document.querySelector('[name="theme-color"]').setAttribute('content', '#222');
+	}
+
+	if (document.body.getAttribute('id') != 'article') {
+		let changeTheme = document.querySelector('.change_theme');
+		changeTheme.classList.add(themeColor);
+		changeTheme.onclick = function(event) {
+			if (document.body.dataset.theme == 'light') {
+				event.target.classList.remove('light');
+				event.target.classList.add('dark');
+				window.localStorage.setItem('themeColor', 'dark');
+				document.body.dataset.theme = 'dark';
+				document.querySelector('[name="theme-color"]').setAttribute('content', '#222');
+			} else {
+				event.target.classList.remove('dark');
+				event.target.classList.add('light');
+				window.localStorage.setItem('themeColor', 'light');
+				document.body.dataset.theme = 'light';
+				document.querySelector('[name="theme-color"]').setAttribute('content', '#fff');
+			}
+		};
+	}
+
+	// Offers
+	if (document.body.getAttribute('id') == 'article') {
+		let script = document.createElement('script');
+		script.src = '/public/js/getOffers.js';
+		script.defer = true;
+		script.onload = function() {
+			let lang = document.querySelector('html').getAttribute('lang'),
+				keys = document.querySelector('[itemprop="keywords"]').getAttribute('content');
+			let offers = getOffers(lang, keys.split(',').map(key => key.trim()));
+			// console.log(offers);
+
+			let offer = offers.shuffle()[0];
+			let element = document.createElement('div');
+			element.classList.add('offer');
+			element.innerHTML = `<span>${offer.title}</span><p>${offer.text}</p><a href="${offer.link}" target="_blank">${offer.anchor}</a>`;
+			document.querySelector('article.root').append(element);
+		};
+		document.body.append(script);
+	}
 });
 
+Array.prototype.shuffle = function() {
+	for (let i = this.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		[this[i], this[j]] = [this[j], this[i]];
+	}
+
+	return this;
+};
 
 // Handlers
 let handlers = {};
@@ -79,7 +119,7 @@ handlers.search = async function(event, articles) {
 
 	let as = '';
 	for (let article of articles) {
-		as += `<a href="${location.origin}/${article.path}/" target="_blank">${article.title}</a><hr>`;
+		as += `<a href="${location.origin}/${article.path}/">${article.title}</a><hr>`;
 	}
 
 	input.classList.add('active');
@@ -92,7 +132,7 @@ function processPage(page, items) {
 	for (let item of items) {
 		response +=`
 <article>
-	<h3><a href="${item.path}" target="_blank">${item.title}</a></h3>
+	<h3><a href="${item.path}">${item.title}</a></h3>
 	<div class="main">
 		<p>${item.annotation}</p>
 	</div>
