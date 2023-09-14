@@ -60,9 +60,6 @@ body * {font-family: "PT-Sans-Regular";}
 
 main.root {padding: 0 .25em;}
 main.root  > h1 {font-size: 1.75em; margin: .25em 0;}
-main.root  > h1 + div {display: flex; font-size: 1.5em; margin: .5em 0 0;}
-main.root  > h1 + div > a {padding: .5em; margin-right: .5em; border-radius: .25em;}
-main.root  > h1 + div > a:last-child {margin-right: 0;}
 
 .articles {}
 .articles > h2 {}

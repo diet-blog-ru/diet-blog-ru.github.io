@@ -1,7 +1,7 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', async function() {
-	if (location.pathname == '/articles/') {
+	if (location.pathname == '/') {
 		let page = new URLSearchParams(location.search).get('page');
 		if (page && page > 0) {
 			let data = await fetch(`${location.origin}/public/data/articles/${page}.json`);
@@ -63,10 +63,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 			// console.log(offers);
 
 			let offer = offers.shuffle()[0];
-			let element = document.createElement('div');
-			element.classList.add('offer');
-			element.innerHTML = `<span>${offer.title}</span><p>${offer.text}</p><a href="${offer.link}" target="_blank">${offer.anchor}</a>`;
-			document.querySelector('article.root').append(element);
+			if (offer) {
+				let element = document.createElement('div');
+				element.classList.add('offer');
+				element.innerHTML = `<span>${offer.title}</span><p>${offer.text}</p><a href="${offer.link}" target="_blank">${offer.anchor}</a>`;
+				document.querySelector('article.root').append(element);
+			}
 		};
 		document.body.append(script);
 	}
