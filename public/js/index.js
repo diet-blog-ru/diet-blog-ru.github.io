@@ -52,26 +52,26 @@ document.addEventListener('DOMContentLoaded', async function() {
 	}
 
 	// Offers
-	if (document.body.getAttribute('id') == 'article') {
-		let script = document.createElement('script');
-		script.src = '/public/js/getOffers.js';
-		script.defer = true;
-		script.onload = function() {
-			let lang = document.querySelector('html').getAttribute('lang'),
-				keys = document.querySelector('[itemprop="keywords"]').getAttribute('content');
-			let offers = getOffers(lang, keys.split(',').map(key => key.trim()));
-			// console.log(offers);
+	// if (document.body.getAttribute('id') == 'article') {
+	// 	let script = document.createElement('script');
+	// 	script.src = '/public/js/getOffers.js';
+	// 	script.defer = true;
+	// 	script.onload = function() {
+	// 		let lang = document.querySelector('html').getAttribute('lang'),
+	// 			keys = document.querySelector('[itemprop="keywords"]').getAttribute('content');
+	// 		let offers = getOffers(lang, keys.split(',').map(key => key.trim()));
+	// 		// console.log(offers);
 
-			let offer = offers.shuffle()[0];
-			if (offer) {
-				let element = document.createElement('div');
-				element.classList.add('offer');
-				element.innerHTML = `<span>${offer.title}</span><p>${offer.text}</p><a href="${offer.link}" target="_blank">${offer.anchor}</a>`;
-				document.querySelector('article.root').append(element);
-			}
-		};
-		document.body.append(script);
-	}
+	// 		let offer = offers.shuffle()[0];
+	// 		if (offer) {
+	// 			let element = document.createElement('div');
+	// 			element.classList.add('offer');
+	// 			element.innerHTML = `<span>${offer.title}</span><p>${offer.text}</p><a href="${offer.link}" target="_blank">${offer.anchor}</a>`;
+	// 			document.querySelector('article.root').append(element);
+	// 		}
+	// 	};
+	// 	document.body.append(script);
+	// }
 });
 
 Array.prototype.shuffle = function() {
@@ -127,7 +127,7 @@ handlers.search = async function(event, articles) {
 	input.classList.add('active');
 	results.classList.add('active');
 	results.innerHTML = as;
-}
+};
 
 function processPage(page, items) {
 	let response = '';
