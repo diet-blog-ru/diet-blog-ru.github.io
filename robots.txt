@@ -1,6 +1,6 @@
 User-agent: *
 Allow: *
-Allow: https://diet-blog-ru.github.io/rss.xml
+Allow: /rss.xml
 Disallow: *?page=
 Host: https://diet-blog-ru.github.io
 Sitemap: https://diet-blog-ru.github.io/sitemap.xml
